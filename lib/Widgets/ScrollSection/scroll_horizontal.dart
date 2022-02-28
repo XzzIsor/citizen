@@ -20,6 +20,7 @@ class ScrollHorizontal extends StatelessWidget {
           ScrollCard(title: 'Titulo'),
           ScrollCard(title: 'Titulo'),
           ScrollCard(title: 'Titulo'),
+          ScrollCard(title: 'Titulo'),
         ],
       ),
     );
