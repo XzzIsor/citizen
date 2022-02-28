@@ -16,11 +16,6 @@ class ScrollHorizontal extends StatelessWidget {
         children: const [
           ScrollCard(title: 'Titulo'),
           ScrollCard(title: 'Titulo'),
-          ScrollCard(title: 'Titulo'),
-          ScrollCard(title: 'Titulo'),
-          ScrollCard(title: 'Titulo'),
-          ScrollCard(title: 'Titulo'),
-          ScrollCard(title: 'Titulo'),
         ],
       ),
     );
