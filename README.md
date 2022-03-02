@@ -1,6 +1,6 @@
 # citizen
 
-A new Flutter project.
+A new Flutter project - CitizenWebApp
 
 ## Getting Started
 
