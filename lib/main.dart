@@ -1,7 +1,18 @@
-import 'package:citizen/Views/main_page.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+import 'package:citizen/Views/main_page.dart';
+
+import 'package:firebase_core/firebase_core.dart';
+
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  //Database connection in Firebase
+
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override

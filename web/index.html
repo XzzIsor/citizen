@@ -33,6 +33,33 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+    import { initializeApp } from "firebase/app";
+    import { getFirestore } from "firebase/firestore";
+    import { initializeApp } from "firebase/app";
+    import { getStorage } from "firebase/storage";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+    apiKey: "AIzaSyDxhsxPDMCmopGFbmV4y4bweKPnEfKkygE",
+    authDomain: "citizen-359ee.firebaseapp.com",
+    projectId: "citizen-359ee",
+    storageBucket: "citizen-359ee.appspot.com",
+    messagingSenderId: "1000614504923",
+    appId: "1:1000614504923:web:bb9ad6fd4ad49c767e1ffe"
+  };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
+
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
