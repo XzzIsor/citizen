@@ -9,7 +9,18 @@ class ImageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return SizedBox(
+    return Container(
+        decoration:  BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: const <BoxShadow>[
+            BoxShadow(
+              color: Colors.black45,
+              blurRadius: 3.0,
+              spreadRadius: 5.0,
+              offset: Offset(7, 10)
+            )
+          ]
+        ),
         height: height,
         width: width,
         child: ClipRRect(

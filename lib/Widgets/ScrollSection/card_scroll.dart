@@ -14,6 +14,7 @@ class ScrollCard extends StatelessWidget {
       child: Column(
         children: [
           ImageCard(height: size.height * 0.15, width: size.width * 0.15),
+          const SizedBox(height: 10),
           Text(
             title,
             style: const TextStyle(color: Colors.white),

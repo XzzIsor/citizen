@@ -7,7 +7,14 @@ class BackgroundMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color.fromRGBO(0, 0, 0, 0.78),
+        gradient: LinearGradient(
+          colors: [
+            Color.fromRGBO(5, 0, 255, 0.88),
+            Color.fromRGBO(105, 139, 227, 0.93)
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight
+        ),
       ),
     );
   }

@@ -1,5 +1,7 @@
-import 'package:citizen/Widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import 'package:citizen/Widgets/ScrollSection/category_section.dart';
+import 'package:citizen/Widgets/widgets.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class MainPage extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            ScrollHorizontal()
+            CategorySection()
           ],
         )
       ],
