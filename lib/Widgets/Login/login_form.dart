@@ -1,4 +1,5 @@
 import 'package:citizen/Widgets/widgets.dart';
+import 'package:citizen/src/Controllers/UserController.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatelessWidget {
@@ -8,11 +9,17 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
 
+    UserController _userController = UserController();
+    String _email = '';
+    String _password = '';
+
     CustomTextField _emailInput = CustomTextField(
         label: 'E-Mail',
         icon: Icons.email_outlined,
         hintText: 'example@gmail.com',
-        onChange: (value) {},
+        onChange: (value) {
+          _email = value;
+        },
         emailType: true,
         obscureText: false);
 
@@ -20,13 +27,26 @@ class LoginForm extends StatelessWidget {
       label: 'Contraseña',
       icon: Icons.lock_outline,
       hintText: 'juanitogolondrina123',
-      onChange: (value) {},
+      onChange: (value) {
+        _password = value;
+      },
       emailType: false,
       obscureText: true,
     );
 
+    TextButton _forgetButton = TextButton(
+        onPressed: () {},
+        child: const Text(
+          '¿Ya se te olvidó, pirobo?',
+          style: TextStyle(color: Colors.white),
+        ));
+
     ElevatedButton _button = ElevatedButton(
       onPressed: () {
+        if (_userController.authUser(email: _email, password: _password)) {
+          print("La wea entró");
+        }
+        print("Jejejejejeje");
         Navigator.of(context).pop();
       },
       child: const Text(
@@ -44,17 +64,15 @@ class LoginForm extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
+          gradient: const LinearGradient(
             colors: [
               Color.fromRGBO(236, 98, 188, 1),
               Color.fromRGBO(241, 142, 172, 1),
             ],
             begin: FractionalOffset(0, 0.6),
             end: FractionalOffset(0, 1),
-        ),
-        borderRadius: BorderRadius.circular(25)
-
-      ),
+          ),
+          borderRadius: BorderRadius.circular(25)),
       height: _size.height * 0.6,
       width: _size.width * 0.25,
       child: Form(
@@ -75,12 +93,7 @@ class LoginForm extends StatelessWidget {
                 child: _passwordInput,
               ),
               const SizedBox(height: 15),
-              TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    '¿Ya se te olvidó, pirobo?',
-                    style: TextStyle(color: Colors.white),
-                  )),
+              _forgetButton,
               const SizedBox(height: 110),
               _button
             ],
