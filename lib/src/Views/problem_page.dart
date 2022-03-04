@@ -1,3 +1,5 @@
+import 'package:citizen/Widgets/Problem/problem_view.dart';
+import 'package:citizen/Widgets/log_header.dart';
 import 'package:citizen/Widgets/widgets.dart';
 import 'package:citizen/src/Controllers/controllers.dart';
 

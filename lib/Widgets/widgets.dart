@@ -28,24 +28,6 @@ export 'package:citizen/Widgets/Sing%20In/singin_dialog.dart';
 export 'package:citizen/Widgets/Sing%20In/singin_form.dart';
 export 'package:citizen/Widgets/Sing%20In/succesful_dialog.dart';
 
-<<<<<<< HEAD
-/** Problem */
-export 'package:citizen/Widgets/Problem/problem_view.dart';
-
-
-export 'package:citizen/Widgets/log_header.dart';
-
-export 'package:citizen/Widgets/RegisterProblem/inital_data_problem_form.dart';
-
-
-
-
-
-
-
-
-=======
->>>>>>> ab488a90e68e798f6a28ae9f9cbd7b79bcffe951
 
 
 

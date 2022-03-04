@@ -1,12 +1,7 @@
 import 'package:citizen/Widgets/widgets.dart';
-<<<<<<< HEAD
 import 'package:citizen/src/Controllers/user_controller.dart';
 import 'package:citizen/src/Models/models.dart';
-=======
-import 'package:citizen/src/Controllers/UserController.dart';
->>>>>>> ab488a90e68e798f6a28ae9f9cbd7b79bcffe951
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -21,10 +16,6 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
     bool _exist = true;
-
-    UserController _userController = UserController();
-    String _email = '';
-    String _password = '';
 
     UserController _userController = UserController();
     String _email = '';
@@ -55,17 +46,14 @@ class _LoginFormState extends State<LoginForm> {
     TextButton _forgetButton = TextButton(
         onPressed: () {},
         child: const Text(
-<<<<<<< HEAD
+
           '¿Olvidó su contraseña?',
-=======
-          '¿Ya se te olvidó, pirobo?',
->>>>>>> ab488a90e68e798f6a28ae9f9cbd7b79bcffe951
+
           style: TextStyle(color: Colors.white),
         ));
 
     ElevatedButton _button = ElevatedButton(
       onPressed: () {
-<<<<<<< HEAD
         _userController.authenticateUser(email: _email, password: _password);
 
         if (_userController.authUser.id != 'invalid') {
@@ -77,13 +65,6 @@ class _LoginFormState extends State<LoginForm> {
             _exist = false;
           });
         }
-=======
-        if (_userController.authUser(email: _email, password: _password)) {
-          print("La wea entró");
-        }
-        print("Jejejejejeje");
-        Navigator.of(context).pop();
->>>>>>> ab488a90e68e798f6a28ae9f9cbd7b79bcffe951
       },
       child: const Text(
         'Ingresar',

@@ -8,10 +8,7 @@ class HeaderMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-=======
 
->>>>>>> ab488a90e68e798f6a28ae9f9cbd7b79bcffe951
     final size = MediaQuery.of(context).size;
     TextStyle _textStyle = const TextStyle(color: Colors.white, fontSize: 50);
     LoginDialog _loginDialog = LoginDialog();
