@@ -2,20 +2,19 @@
 import 'package:flutter/material.dart';
 
 import 'package:citizen/Widgets/widgets.dart';
-import 'package:provider/provider.dart';
 
-class MainPage extends StatelessWidget {
-  const MainPage({Key? key}) : super(key: key);
+class LogMainPage extends StatelessWidget {
+  const LogMainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
           body: Stack(
         children: [
           const BackgroundMain(),
           Column(
             children: const [
-              HeaderMain(),
+              LogHeader(),
               SizedBox(height: 150),
               InProgressBlock(),
               SizedBox(
@@ -25,7 +24,7 @@ class MainPage extends StatelessWidget {
             ],
           )
         ],
-      ),
+      )
     );
   }
 }

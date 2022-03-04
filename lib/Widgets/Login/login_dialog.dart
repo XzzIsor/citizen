@@ -8,7 +8,8 @@ class LoginDialog {
         builder: (BuildContext context) {
           return const AlertDialog(
             backgroundColor: Colors.transparent,
-            content: LoginForm(),
+            content: LoginForm(), 
+            
             elevation: 24,
           );
         });
