@@ -1,6 +1,5 @@
 # citizen
-
-Chingue a su madre el america
+this is a sketch app of a device for security
 
 ## Getting Started
 
