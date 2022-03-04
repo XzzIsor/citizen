@@ -12,13 +12,31 @@ class ProgressBar extends StatelessWidget {
       height: 20,
       width: width,
       alignment: Alignment.centerLeft,
-      decoration:
-          BoxDecoration(color: Colors.white, borderRadius: _borderRadius),
+      decoration:BoxDecoration(
+        color: Colors.white, 
+        borderRadius: _borderRadius,
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 2.0,
+            spreadRadius: 5.0,
+            offset: Offset(4, 5)
+          )
+        ]
+      ),
       child: Container(
         height: 20,
         width: width * progress + 30,
-        decoration:
-            BoxDecoration(color: Colors.green, borderRadius: _borderRadius),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+              colors: [
+                Color.fromARGB(255, 69, 24, 175),
+                Color.fromARGB(255, 128, 29, 209)
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight
+            ),
+          borderRadius: _borderRadius),
       ),
     );
   }

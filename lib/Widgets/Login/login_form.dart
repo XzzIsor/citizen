@@ -17,16 +17,44 @@ class LoginForm extends StatelessWidget {
         obscureText: false);
 
     CustomTextField _passwordInput = CustomTextField(
-        label: 'Contraseña',
-        icon: Icons.lock_outline,
-        hintText: 'juanitogolondrina123',
-        onChange: (value) {},
-        emailType: false,
-        obscureText: true,
+      label: 'Contraseña',
+      icon: Icons.lock_outline,
+      hintText: 'juanitogolondrina123',
+      onChange: (value) {},
+      emailType: false,
+      obscureText: true,
+    );
+
+    ElevatedButton _button = ElevatedButton(
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+      child: const Text(
+        'Ingresar',
+        style: TextStyle(color: Colors.white),
+      ),
+      style: ElevatedButton.styleFrom(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          onPrimary: Colors.transparent,
+          primary: Colors.transparent,
+          side: const BorderSide(color: Colors.white),
+          onSurface: Colors.white),
     );
 
     return Container(
-      decoration: BoxDecoration(color: Colors.blue[800]),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+            colors: [
+              Color.fromRGBO(236, 98, 188, 1),
+              Color.fromRGBO(241, 142, 172, 1),
+            ],
+            begin: FractionalOffset(0, 0.6),
+            end: FractionalOffset(0, 1),
+        ),
+        borderRadius: BorderRadius.circular(25)
+
+      ),
       height: _size.height * 0.6,
       width: _size.width * 0.25,
       child: Form(
@@ -34,7 +62,8 @@ class LoginForm extends StatelessWidget {
           padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
           child: Column(
             children: [
-              const Text('Ingresar', style: TextStyle(color: Colors.white, fontSize: 25 )),
+              const Text('Ingresar',
+                  style: TextStyle(color: Colors.white, fontSize: 25)),
               const SizedBox(height: 35),
               Padding(
                 padding: const EdgeInsets.all(5.0),
@@ -47,27 +76,13 @@ class LoginForm extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               TextButton(
-                onPressed: (){}, 
-                child: const Text('¿Ya se te olvidó, pirobo?', style: TextStyle(color: Colors.white),)
-              ),
-
-              const SizedBox(height: 110),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
+                  onPressed: () {},
                   child: const Text(
-                    'Ingresar',
+                    '¿Ya se te olvidó, pirobo?',
                     style: TextStyle(color: Colors.white),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      onPrimary: Colors.transparent,
-                      primary: Colors.transparent,
-                      side: const BorderSide(color: Colors.white),
-                      onSurface: Colors.white),
-                ),
+                  )),
+              const SizedBox(height: 110),
+              _button
             ],
           ),
         ),

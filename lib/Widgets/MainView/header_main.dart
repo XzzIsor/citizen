@@ -33,7 +33,7 @@ class HeaderMain extends StatelessWidget {
             function: () {
               _loginDialog.showLoginDialog(context);
             },
-            color: Colors.blue[800],
+            color: const Color.fromRGBO(236, 98, 188, 1),
             textColor: Colors.white,
           )
         ],

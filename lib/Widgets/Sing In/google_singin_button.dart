@@ -60,7 +60,7 @@ class _ButtonContent extends StatelessWidget {
       height: height,
       width: width * 0.20,
       decoration: const BoxDecoration(
-          color: Color.fromRGBO(96, 101, 211, 1),
+          color: Color.fromRGBO(241, 142, 172, 1),
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(10), topLeft: Radius.circular(10))),
       child: const ClipRRect(

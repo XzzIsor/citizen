@@ -9,18 +9,8 @@ class SingInDialog {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: const Color.fromRGBO(96, 101, 211, 1),
-            content: Container(
-              width: _size.width * 0.16,
-              height: _size.height * 0.1,
-              child: Column(
-                children: [
-                  const Text('Registrarse Con Google', style: TextStyle(fontSize: 15),),
-                  const SizedBox(height: 15),
-                  GoogleSingInButton(height: _size.height * 0.06, width: _size.width * 0.15),
-                ],
-              ),
-            ),
+            backgroundColor: Colors.transparent,
+            content: const SingInForm(),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             elevation: 24,

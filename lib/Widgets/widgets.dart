@@ -21,6 +21,8 @@ export 'package:citizen/Widgets/Login/login_form.dart';
 
 /** Sing In */
 export 'package:citizen/Widgets/Sing%20In/google_singin_button.dart';
+export 'package:citizen/Widgets/Sing%20In/singin_dialog.dart';
+export 'package:citizen/Widgets/Sing%20In/singin_form.dart';
 
 
 

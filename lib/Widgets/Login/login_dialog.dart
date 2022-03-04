@@ -6,12 +6,9 @@ class LoginDialog {
     return showDialog<void>(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: Colors.blue[800],
-            content: const LoginForm(),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20)
-            ),
+          return const AlertDialog(
+            backgroundColor: Colors.transparent,
+            content: LoginForm(),
             elevation: 24,
           );
         });

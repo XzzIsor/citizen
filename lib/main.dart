@@ -10,7 +10,14 @@ void main() async {
 
   //Database connection in Firebase
 
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyB_8IwlGph0JJQWtt_7hkx4DXnXqAC-dUM", 
+      appId: "1:769398598023:web:8d3da48abaa36a74b50b22", 
+      messagingSenderId: "769398598023", 
+      projectId: "citizendb20")
+
+  );
   runApp(MyApp());
 }
 
