@@ -1,4 +1,6 @@
 
+import 'package:citizen/Widgets/ScrollSection/card_scroll.dart';
+import 'package:citizen/src/Models/models.dart';
 import 'package:flutter/material.dart';
 
 class ScrollHorizontal extends StatefulWidget {
@@ -9,7 +11,7 @@ class ScrollHorizontal extends StatefulWidget {
     required this.height,
   }) : super(key: key);
 
-  final List<Widget> children;
+  final List<ProblemModel> children;
   final double width;
   final double height;
 
@@ -40,7 +42,7 @@ class _ScrollHorizontalState extends State<ScrollHorizontal> {
                 scrollDirection: Axis.horizontal,
                 controller: _controller,
                 itemCount: widget.children.length,
-                itemBuilder: (BuildContext context, int index) => widget.children[index])
+                itemBuilder: (BuildContext context, int index) => ScrollCard(problem: widget.children[index],))
               ),
           IconButton(
               onPressed: () => _controller.nextPage(duration: const Duration(milliseconds: 800), curve: Curves.decelerate),

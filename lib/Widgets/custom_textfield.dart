@@ -11,13 +11,14 @@ class CustomTextField extends StatefulWidget {
       required this.emailType,
       required this.obscureText,
       this.initialValue,
-      this.inputFormatters, this.validator, this.counterText})
+      this.inputFormatters, this.validator, this.counterText, this.maxLines})
       : super(key: key);
 
   final String label;
   final String? counterText;
   final IconData icon;
   final String hintText;
+  final int? maxLines;
   final Function(String) onChange;
   final String? Function(String?)? validator;
   final bool emailType;
@@ -47,6 +48,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+            maxLines: widget.maxLines,
             initialValue: widget.initialValue,
             obscureText: widget.obscureText,
             inputFormatters: widget.inputFormatters,

@@ -26,7 +26,7 @@ class ProgressBar extends StatelessWidget {
       ),
       child: Container(
         height: 20,
-        width: width * progress + 30,
+        width: width * progress,
         decoration: BoxDecoration(
           gradient: const LinearGradient(
               colors: [
