@@ -23,6 +23,9 @@ export 'package:citizen/Widgets/Login/login_form.dart';
 export 'package:citizen/Widgets/Sing%20In/google_singin_button.dart';
 export 'package:citizen/Widgets/Sing%20In/singin_dialog.dart';
 export 'package:citizen/Widgets/Sing%20In/singin_form.dart';
+export 'package:citizen/Widgets/Sing%20In/succesful_dialog.dart';
+
+
 
 
 

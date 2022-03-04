@@ -1,2 +1,2 @@
-export 'package:citizen/src/Models/User.dart';
+export 'package:citizen/src/Models/UserModel.dart';
 

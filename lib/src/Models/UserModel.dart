@@ -5,8 +5,8 @@
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-class User {
-    User({
+class UserModel {
+    UserModel({
         required this.id,
         required this.nombres,
         required this.apellidos,
@@ -16,24 +16,24 @@ class User {
         required this.password,
     });
 
-    int id;
+    String id;
     String nombres;
     String apellidos;
     String direccion;
     String email;
-    int telefono;
+    String telefono;
     String password;
 
-    User copyWith({
-        required int id,
+    UserModel copyWith({
+        required String id,
         required String nombres,
         required String apellidos,
         required String direccion,
         required String email,
-        required int telefono,
+        required String telefono,
         required String password,
     }) => 
-        User(
+        UserModel(
             id: id,
             nombres: nombres,
             apellidos: apellidos,
@@ -43,11 +43,11 @@ class User {
             password: password,
         );
 
-    factory User.fromJson(String str) => User.fromMap(json.decode(str));
+    factory UserModel.fromJson(String str) => UserModel.fromMap(json.decode(str));
 
     String toJson() => json.encode(toMap());
 
-    factory User.fromMap(Map<String, dynamic> json) => User(
+    factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
         id: json["id"],
         nombres: json["nombres"],
         apellidos: json["apellidos"],

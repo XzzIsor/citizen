@@ -9,8 +9,6 @@ class HeaderMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UserController userController = UserController();
-    final Future<List<User>> users = userController.getUsers();
 
     final size = MediaQuery.of(context).size;
     TextStyle _textStyle = const TextStyle(color: Colors.white, fontSize: 50);
