@@ -1,6 +1,7 @@
 import 'package:citizen/Widgets/Login/login_dialog.dart';
-import 'package:citizen/Widgets/Sing%20In/singin_dialog.dart';
 import 'package:citizen/Widgets/widgets.dart';
+import 'package:citizen/src/Controllers/UserController.dart';
+import 'package:citizen/src/Models/models.dart';
 import 'package:flutter/material.dart';
 
 class HeaderMain extends StatelessWidget {
@@ -8,6 +9,9 @@ class HeaderMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UserController userController = UserController();
+    final Future<List<User>> users = userController.getUsers();
+
     final size = MediaQuery.of(context).size;
     TextStyle _textStyle = const TextStyle(color: Colors.white, fontSize: 50);
     LoginDialog _loginDialog = LoginDialog();
@@ -30,7 +34,7 @@ class HeaderMain extends StatelessWidget {
               }),
           CustomButton(
             text: 'Ingresar',
-            function: () {
+            function: () async {
               _loginDialog.showLoginDialog(context);
             },
             color: const Color.fromRGBO(236, 98, 188, 1),

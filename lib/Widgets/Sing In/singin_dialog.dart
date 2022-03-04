@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 class SingInDialog {
   Future<void> showSingInDialog(BuildContext context) async {
-    final Size _size = MediaQuery.of(context).size;
 
     return showDialog<void>(
         context: context,
