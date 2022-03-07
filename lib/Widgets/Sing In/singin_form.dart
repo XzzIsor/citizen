@@ -41,6 +41,7 @@ class SingInForm extends StatelessWidget {
       },
       emailType: false,
       obscureText: true,
+      maxLines: 1,
     );
 
     CustomTextField _nameInput = CustomTextField(

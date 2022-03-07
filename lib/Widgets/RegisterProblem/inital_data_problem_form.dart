@@ -14,7 +14,7 @@ class InitialProblemDataForm extends StatelessWidget {
   final ProblemModel _problemModel = ProblemModel(
       descripcion: '',
       direccion: '',
-      estado: '',
+      estado: '0',
       fijado: false,
       multimedia: '',
       titulo: '',
@@ -35,7 +35,9 @@ class InitialProblemDataForm extends StatelessWidget {
             _size,
             SizedBox(
               height: _size.height * 0.08,
-            ))
+            ),
+            context
+        )
       ],
     );
   }
@@ -126,7 +128,7 @@ class InitialProblemDataForm extends StatelessWidget {
             maxLines: 15));
   }
 
-  Widget _aditionalData(Size _size, SizedBox _spacer) {
+  Widget _aditionalData(Size _size, SizedBox _spacer, BuildContext context) {
     return Container(
       padding: EdgeInsets.all(_size.height * 0.02),
       height: _size.height * 0.4,
@@ -144,12 +146,14 @@ class InitialProblemDataForm extends StatelessWidget {
       child: Form(
         child: Column(
           children: [
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             _addressField(_size),
             _spacer,
             _writerField(_size),
             _spacer,
-            _submitButton(_size)
+            _submitButton(_size, context)
           ],
         ),
       ),
@@ -196,15 +200,15 @@ class InitialProblemDataForm extends StatelessWidget {
     );
   }
 
-  Widget _submitButton(Size size) {
+  Widget _submitButton(Size size, BuildContext context) {
     return SizedBox(
       height: size.height * 0.05,
       width: size.width * 0.1,
       child: ElevatedButton(
         onPressed: () async {
-        
           _problemModel.multimedia = 'problems/stock.jpg';
           _problemController.addProblem(_problemModel);
+          Navigator.pushNamed(context, 'logmain');
         },
         child: const Text(
           'Subir',
