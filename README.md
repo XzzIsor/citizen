@@ -66,3 +66,5 @@ Para ejecutar el programa a pleno rendimiento sin depuración. Correr:
 ```
 flutter run --profile
 ```
+
+
