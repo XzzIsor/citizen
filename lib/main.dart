@@ -25,7 +25,7 @@ void main() async {
       )
   );
 
-  UserController _userController = UserController();
+  UserController _userController = UserController(); 
   List<UserModel> users = await _userController.getUsers();
   ProblemController _problemController = ProblemController();
   await _problemController.getProblems();

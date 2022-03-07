@@ -35,7 +35,7 @@ class LogHeader extends StatelessWidget {
               style: _textStyle,
             ),
           ),
-          SizedBox(width: size.width * 0.2),
+          SizedBox(width: size.width * 0.1),
           _nameText,
           SizedBox(
             width: size.width * 0.01,

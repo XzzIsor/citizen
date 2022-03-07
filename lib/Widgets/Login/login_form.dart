@@ -61,7 +61,6 @@ class _LoginFormState extends State<LoginForm> {
               context, 'logmain', (Route<dynamic> route) => false);
         } else {
           setState(() {
-            print('qweqe');
             _exist = false;
           });
         }
