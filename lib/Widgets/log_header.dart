@@ -22,13 +22,15 @@ class LogHeader extends StatelessWidget {
       margin: EdgeInsets.only(top: size.height * 0.02),
       child: Row(
         children: [
-          CustomButton(text: 'Problema', function: (){
-            Navigator.pushNamed(context, 'problemRegister');
-          }),
+          CustomButton(
+              text: 'Problema',
+              function: () {
+                Navigator.pushNamed(context, 'problemRegister');
+              }),
           SizedBox(width: size.width * 0.4),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, 'logmain');
+              Navigator.pushNamed(context, '/');
             },
             child: Text(
               'Citizen',
@@ -46,7 +48,8 @@ class LogHeader extends StatelessWidget {
           ),
           CustomButton(
             text: 'Logout',
-            function: () {
+            function: () async {
+              await _userController.logoutFromFirebase();
               _userController.authUser = UserModel(
                   id: 'invalid',
                   nombres: 'invalid',
@@ -54,7 +57,8 @@ class LogHeader extends StatelessWidget {
                   direccion: 'invalid',
                   email: 'invalid',
                   telefono: 'invalid',
-                  password: 'invalid');
+                  password: 'invalid',
+                  uid: 'invalid');
               Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
             },
           )

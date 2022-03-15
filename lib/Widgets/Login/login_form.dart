@@ -1,6 +1,6 @@
 import 'package:citizen/Widgets/widgets.dart';
-import 'package:citizen/src/Controllers/user_controller.dart';
-import 'package:citizen/src/Models/models.dart';
+import 'package:citizen/src/Controllers/controllers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {
@@ -11,25 +11,35 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  
+  String _message = '';
+
   @override
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
-    bool _exist = true;
 
     UserController _userController = UserController();
     String _email = '';
     String _password = '';
 
     CustomTextField _emailInput = CustomTextField(
-        label: 'E-Mail',
-        icon: Icons.email_outlined,
-        hintText: 'example@gmail.com',
-        onChange: (value) {
-          _email = value;
-        },
-        emailType: true,
-        obscureText: false);
+      label: 'E-Mail',
+      icon: Icons.email_outlined,
+      hintText: 'example@gmail.com',
+      onChange: (value) {
+        _email = value;
+      },
+      emailType: true,
+      obscureText: false,
+      validator: (value) {
+        String pattern =
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+        RegExp regExp = RegExp(pattern);
+        String? respEmail = regExp.hasMatch(value ?? '')
+            ? null
+            : 'Ingrese un correo electrónico válido';
+        return respEmail;
+      },
+    );
 
     CustomTextField _passwordInput = CustomTextField(
       label: 'Contraseña',
@@ -41,27 +51,32 @@ class _LoginFormState extends State<LoginForm> {
       emailType: false,
       obscureText: true,
       maxLines: 1,
+      validator: (value) {
+        String? resp = value != null && value.length >= 6
+            ? null
+            : 'La contraseña debe tener al menos 6 caracteres';
+        return resp;
+      },
     );
 
     TextButton _forgetButton = TextButton(
         onPressed: () {},
         child: const Text(
-
           '¿Olvidó su contraseña?',
-
           style: TextStyle(color: Colors.white),
         ));
 
     ElevatedButton _button = ElevatedButton(
-      onPressed: () {
-        _userController.authenticateUser(email: _email, password: _password);
+      onPressed: () async {
+        User? user = await _userController.signInUsingEmailPassword(
+            email: _email, password: _password, context: context);
 
-        if (_userController.authUser.id != 'invalid') {
+        if (user != null) {
           Navigator.pushNamedAndRemoveUntil(
-              context, 'logmain', (Route<dynamic> route) => false);
+              context, '/', (Route<dynamic> route) => false);
         } else {
           setState(() {
-            _exist = false;
+            _message = ErrorProvider.error;
           });
         }
       },
@@ -114,8 +129,8 @@ class _LoginFormState extends State<LoginForm> {
               _button,
               const SizedBox(height: 15),
               Text(
-                'El usuario no existe',
-                style: TextStyle(color: _exist ? Colors.transparent : Colors.white),
+                _message,
+                style: const TextStyle(color: Color.fromARGB(255, 253, 1, 1)),
               )
             ],
           ),

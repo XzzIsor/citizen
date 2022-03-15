@@ -1,10 +1,10 @@
-import 'dart:html' as html;
 import 'package:citizen/Widgets/widgets.dart';
 import 'package:citizen/src/Controllers/controllers.dart';
 import 'package:citizen/src/Models/models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class InitialProblemDataForm extends StatelessWidget {
   InitialProblemDataForm({Key? key}) : super(key: key);
@@ -16,11 +16,12 @@ class InitialProblemDataForm extends StatelessWidget {
       direccion: '',
       estado: '0',
       fijado: false,
-      multimedia: '',
+      multimedia: [],
       titulo: '',
       ubicacion: GeoPoint(0, 0),
       escritor: '');
-  html.File? _image;
+
+  final List<XFile> _images = [];
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +37,7 @@ class InitialProblemDataForm extends StatelessWidget {
             SizedBox(
               height: _size.height * 0.08,
             ),
-            context
-        )
+            context)
       ],
     );
   }
@@ -94,7 +94,8 @@ class InitialProblemDataForm extends StatelessWidget {
   Widget _imageField(Size size) {
     return GestureDetector(
       onTap: () async {
-        _image = await _storageController.getImageFromDevice();
+        XFile _imageFromPC = await _storageController.getImageFromDevice();
+        _images.add(_imageFromPC);
       },
       child: Container(
           height: size.height * 0.2,
@@ -146,7 +147,7 @@ class InitialProblemDataForm extends StatelessWidget {
       child: Form(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             _addressField(_size),
@@ -206,9 +207,13 @@ class InitialProblemDataForm extends StatelessWidget {
       width: size.width * 0.1,
       child: ElevatedButton(
         onPressed: () async {
-          _problemModel.multimedia = 'problems/stock.jpg';
-          _problemController.addProblem(_problemModel);
-          Navigator.pushNamed(context, 'logmain');
+          if (_images.isNotEmpty) {
+            //List<String> urls = await _storageController.addImagesToStorage(_images);
+            _problemModel.multimedia = ["problems/stock.jpg"];
+            await _problemController.addProblem(_problemModel);
+            print("Problema añadido");
+          }
+          Navigator.pushNamed(context, '/');
         },
         child: const Text(
           'Subir',

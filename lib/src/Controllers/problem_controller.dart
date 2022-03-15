@@ -8,7 +8,7 @@ class ProblemController {
       direccion: '',
       estado: '',
       fijado: false,
-      multimedia: '',
+      multimedia: [],
       titulo: '',
       ubicacion: const GeoPoint(0.0, 0.0),
       escritor: '');
@@ -16,6 +16,7 @@ class ProblemController {
   static List<ProblemModel> _problems = [];
 
   Future<void> getProblems() async {
+    _problems = [];
     await firestore.collection("problema").get().then((snapshot) => {
           snapshot.docs.forEach((element) {
             ProblemModel problem = ProblemModel.fromMap(element.data());
@@ -34,7 +35,10 @@ class ProblemController {
   }
 
   Future<void> addProblem(ProblemModel problem) async {
-    await firestore.collection("problema").add(problem.toMap()).then((value) => print(value));
+    await firestore
+        .collection("problema")
+        .add(problem.toMap())
+        .then((value) => print(value));
   }
 
   ProblemModel get fixedProblem => _fixedProblem;

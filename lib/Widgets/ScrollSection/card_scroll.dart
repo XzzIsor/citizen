@@ -20,7 +20,7 @@ class ScrollCard extends StatelessWidget {
         Navigator.pushReplacementNamed(context, 'problem', arguments: problem);
       },
       child: FutureBuilder(
-          future: _storageController.getImageFromLink(problem.multimedia),
+          future: _storageController.getImageFromLink(problem.multimedia[0]),
           builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
             return Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),

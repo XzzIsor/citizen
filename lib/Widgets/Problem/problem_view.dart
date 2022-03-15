@@ -26,7 +26,7 @@ class ProblemView extends StatelessWidget {
             height: _size.height * 0.65,
             child: SingleChildScrollView(
                 child: FutureBuilder(
-              future: _storageController.getImageFromLink(_problem.multimedia),
+              future: _storageController.getImageFromLink(_problem.multimedia[0]),
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                 return snapshot.hasData
                     ? Column(
