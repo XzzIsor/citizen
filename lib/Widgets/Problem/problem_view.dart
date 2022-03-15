@@ -18,6 +18,7 @@ class ProblemView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         textDirection: TextDirection.ltr,
         children: [
@@ -99,7 +100,9 @@ class ProblemView extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
+          SizedBox(width: _size.width*0.03,),
+          MapBoxWeb(problem: _problem, height: _size.height*0.5, width: _size.width*0.25)
         ],
       ),
     );

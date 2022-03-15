@@ -13,7 +13,6 @@ class InProgressBlock extends StatelessWidget {
     const TextStyle _textStyle = TextStyle(color: Colors.white, fontSize: 22);
     final double _height = _size.height * 0.3;
     ProblemController _problemController = ProblemController();
-    _problemController.getFixedProblem();
 
     return Container(
       height: _height,

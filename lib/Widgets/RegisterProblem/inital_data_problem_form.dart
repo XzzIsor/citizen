@@ -5,12 +5,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mapbox_gl/mapbox_gl.dart';
 
 class InitialProblemDataForm extends StatelessWidget {
   InitialProblemDataForm({Key? key}) : super(key: key);
 
   final StorageController _storageController = StorageController();
   final ProblemController _problemController = ProblemController();
+  final MapController _mapController = MapController();
+  final UserController _userController = UserController();
   final ProblemModel _problemModel = ProblemModel(
       descripcion: '',
       direccion: '',
@@ -25,6 +28,7 @@ class InitialProblemDataForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final Size _size = MediaQuery.of(context).size;
     final SizedBox _spacer = SizedBox(height: _size.height * 0.02);
 
@@ -132,7 +136,7 @@ class InitialProblemDataForm extends StatelessWidget {
   Widget _aditionalData(Size _size, SizedBox _spacer, BuildContext context) {
     return Container(
       padding: EdgeInsets.all(_size.height * 0.02),
-      height: _size.height * 0.4,
+      height: _size.height * 0.75,
       width: _size.width * 0.25,
       decoration: BoxDecoration(
           color: const Color.fromARGB(223, 24, 3, 23),
@@ -153,7 +157,8 @@ class InitialProblemDataForm extends StatelessWidget {
             _addressField(_size),
             _spacer,
             _writerField(_size),
-            _spacer,
+            SizedBox(height: _size.height * 0.01),
+            const MapRegisterProblem(),
             _submitButton(_size, context)
           ],
         ),
@@ -162,6 +167,8 @@ class InitialProblemDataForm extends StatelessWidget {
   }
 
   Widget _writerField(Size size) {
+    final name = _userController.authUser.email.split("@");
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       height: size.height * 0.06,
@@ -170,6 +177,7 @@ class InitialProblemDataForm extends StatelessWidget {
           color: const Color.fromARGB(255, 164, 98, 226),
           borderRadius: BorderRadius.circular(20)),
       child: CustomTextField(
+          initialValue: name[0],
           label: 'Escritor: ',
           icon: Icons.person,
           hintText: "Alias o Nombre",
@@ -208,10 +216,11 @@ class InitialProblemDataForm extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () async {
           if (_images.isNotEmpty) {
+            LatLng point = _mapController.point;
             //List<String> urls = await _storageController.addImagesToStorage(_images);
+            _problemModel.ubicacion = GeoPoint(point.latitude, point.longitude);
             _problemModel.multimedia = ["problems/stock.jpg"];
             await _problemController.addProblem(_problemModel);
-            print("Problema añadido");
           }
           Navigator.pushNamed(context, '/');
         },

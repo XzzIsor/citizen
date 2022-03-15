@@ -24,9 +24,10 @@ class ProblemController {
             problems.add(problem);
           })
         });
+    _getFixedProblem();
   }
 
-  void getFixedProblem() {
+  void _getFixedProblem() {
     for (var prob in problems) {
       if (prob.fijado) {
         _fixedProblem = prob;

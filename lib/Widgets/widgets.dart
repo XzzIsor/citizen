@@ -28,6 +28,13 @@ export 'package:citizen/Widgets/Sing%20In/singin_dialog.dart';
 export 'package:citizen/Widgets/Sing%20In/singin_form.dart';
 export 'package:citizen/Widgets/Sing%20In/succesful_dialog.dart';
 
+/** Maps */
+export 'package:citizen/Widgets/Maps/map_box_web.dart';
+export 'package:citizen/Widgets/Maps/map_register_problem.dart';
+
+
+
+
 
 
 

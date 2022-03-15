@@ -1,12 +1,10 @@
 import 'package:citizen/src/Controllers/controllers.dart';
-import 'package:citizen/src/Models/models.dart';
 import 'package:citizen/src/Views/problem_page.dart';
 import 'package:citizen/src/Views/register_problem_page.dart';
 import 'package:citizen/src/Views/main_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
