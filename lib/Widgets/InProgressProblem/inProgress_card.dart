@@ -20,7 +20,7 @@ class InProgressCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: FutureBuilder(
-        future: _storageController.getImageFromLink(problemModel.multimedia),
+        future: _storageController.getImageFromLink(problemModel.multimedia[0]),
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           return snapshot.hasData
               ? ImageCard(

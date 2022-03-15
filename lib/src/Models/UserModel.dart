@@ -6,48 +6,52 @@ import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class UserModel {
-    UserModel({
-        required this.id,
-        required this.nombres,
-        required this.apellidos,
-        required this.direccion,
-        required this.email,
-        required this.telefono,
-        required this.password,
-    });
+  UserModel({
+    required this.id,
+    required this.nombres,
+    required this.apellidos,
+    required this.direccion,
+    required this.email,
+    required this.telefono,
+    required this.password,
+    required this.uid
+  });
 
-    String id;
-    String nombres;
-    String apellidos;
-    String direccion;
-    String email;
-    String telefono;
-    String password;
+  String id;
+  String nombres;
+  String apellidos;
+  String direccion;
+  String email;
+  String telefono;
+  String password;
+  String uid;
 
-    UserModel copyWith({
-        required String id,
-        required String nombres,
-        required String apellidos,
-        required String direccion,
-        required String email,
-        required String telefono,
-        required String password,
-    }) => 
-        UserModel(
-            id: id,
-            nombres: nombres,
-            apellidos: apellidos,
-            direccion: direccion,
-            email: email,
-            telefono: telefono,
-            password: password,
-        );
+  UserModel copyWith({
+    required String id,
+    required String nombres,
+    required String apellidos,
+    required String direccion,
+    required String email,
+    required String telefono,
+    required String password,
+    required String uid
+  }) =>
+      UserModel(
+        id: id,
+        nombres: nombres,
+        apellidos: apellidos,
+        direccion: direccion,
+        email: email,
+        telefono: telefono,
+        password: password,
+        uid: uid
+      );
 
-    factory UserModel.fromJson(String str) => UserModel.fromMap(json.decode(str));
+  factory UserModel.fromJson(String str) => UserModel.fromMap(json.decode(str));
 
-    String toJson() => json.encode(toMap());
+  String toJson() => json.encode(toMap());
 
-    factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
+  factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
         id: json["id"],
         nombres: json["nombres"],
         apellidos: json["apellidos"],
@@ -55,9 +59,10 @@ class UserModel {
         email: json["email"],
         telefono: json["telefono"],
         password: json["password"],
-    );
+        uid: json["uid"]
+      );
 
-    Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMap() => {
         "id": id,
         "nombres": nombres,
         "apellidos": apellidos,
@@ -65,5 +70,6 @@ class UserModel {
         "email": email,
         "telefono": telefono,
         "password": password,
-    };
+        "uid": uid
+      };
 }

@@ -8,6 +8,7 @@ class InProgressBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final Size _size = MediaQuery.of(context).size;
     const TextStyle _textStyle = TextStyle(color: Colors.white, fontSize: 22);
     final double _height = _size.height * 0.3;

@@ -1,3 +1,4 @@
+import 'package:citizen/Widgets/Login/login_dialog.dart';
 import 'package:citizen/src/Models/models.dart';
 import 'package:flutter/material.dart';
 
@@ -20,17 +21,28 @@ class SingInForm extends StatelessWidget {
         direccion: '',
         email: '',
         telefono: '',
-        password: '');
+        password: '',
+        uid: '');
 
     CustomTextField _emailInput = CustomTextField(
-        label: 'E-Mail',
-        icon: Icons.email_outlined,
-        hintText: 'example@gmail.com',
-        onChange: (value) {
-          _user.email = value;
-        },
-        emailType: true,
-        obscureText: false);
+      label: 'E-Mail',
+      icon: Icons.email_outlined,
+      hintText: 'example@gmail.com',
+      onChange: (value) {
+        _user.email = value;
+      },
+      emailType: true,
+      obscureText: false,
+      validator: (value) {
+        String pattern =
+            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+        RegExp regExp = RegExp(pattern);
+        String? respEmail = regExp.hasMatch(value ?? '')
+            ? null
+            : 'Ingrese un correo electrónico válido';
+        return respEmail;
+      },
+    );
 
     CustomTextField _passwordInput = CustomTextField(
       label: 'Contraseña',
@@ -42,6 +54,12 @@ class SingInForm extends StatelessWidget {
       emailType: false,
       obscureText: true,
       maxLines: 1,
+      validator: (value) {
+        String? resp = value != null && value.length >= 6
+            ? null
+            : 'La contraseña debe tener al menos 6 caracteres';
+        return resp;
+      },
     );
 
     CustomTextField _nameInput = CustomTextField(
@@ -86,6 +104,10 @@ class SingInForm extends StatelessWidget {
       },
       emailType: false,
       obscureText: false,
+      validator: (value) {
+        String? resp =
+            int.tryParse(value!) == null ? 'Ingrese un valor numérico' : null;
+      },
     );
 
     CustomTextField _idInput = CustomTextField(
@@ -97,14 +119,25 @@ class SingInForm extends StatelessWidget {
       },
       emailType: false,
       obscureText: false,
+      validator: (value) {
+        String? resp =
+            int.tryParse(value!) == null ? 'Ingrese un valor numérico' : null;
+      },
     );
 
-    ElevatedButton _button = ElevatedButton(
-      onPressed: () {
-        _userController.registerUser(user: _user);
-        Navigator.of(context).pop();
-        SuccesfulDialog _succesfulDialog = SuccesfulDialog();
-        _succesfulDialog.showSuccesfulDialog(context);
+    ElevatedButton _singInbutton = ElevatedButton(
+      onPressed: () async {
+        String uid = await _userController.registerUsingEmailPassword(
+            email: _user.email, password: _user.password);
+        if (ErrorProvider.error == '') {
+          _user.uid = uid;
+          await _userController.registerUser(user: _user);
+          Navigator.of(context).pop();
+          SuccesfulDialog _succesfulDialog = SuccesfulDialog();
+          _succesfulDialog.showSuccesfulDialog(context);
+          _userController.signInUsingEmailPassword(
+              email: _user.email, password: _user.password, context: context);
+        }
       },
       child: const Text(
         'Registrar',
@@ -120,14 +153,15 @@ class SingInForm extends StatelessWidget {
     );
 
     TextButton _loginButton = TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pop();
+          LoginDialog _logInDialog = LoginDialog();
+          _logInDialog.showLoginDialog(context);
+        },
         child: const Text(
           '¿Ya tienes una cuenta?',
           style: TextStyle(color: Colors.white),
         ));
-
-    GoogleSingInButton _googleButton = GoogleSingInButton(
-        height: _size.height * 0.06, width: _size.width * 0.15);
 
     return Container(
       decoration: BoxDecoration(
@@ -157,11 +191,10 @@ class SingInForm extends StatelessWidget {
                 idInput: _idInput,
                 phoneInput: _phoneInput,
                 addressInput: _addressInput),
-            _button,
+            _singInbutton,
             const SizedBox(height: 10),
             _loginButton,
             const SizedBox(height: 25),
-            _googleButton
           ],
         ),
       ),

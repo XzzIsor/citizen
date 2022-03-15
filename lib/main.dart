@@ -1,13 +1,12 @@
-
 import 'package:citizen/src/Controllers/controllers.dart';
 import 'package:citizen/src/Models/models.dart';
-import 'package:citizen/src/Views/log_main_page.dart';
 import 'package:citizen/src/Views/problem_page.dart';
 import 'package:citizen/src/Views/register_problem_page.dart';
 import 'package:citizen/src/Views/main_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,12 +20,10 @@ void main() async {
           projectId: "citizendb20",
           storageBucket: "citizendb20.appspot.com",
           messagingSenderId: "769398598023",
-          appId: "1:769398598023:web:8d3da48abaa36a74b50b22"
-      )
-  );
+          appId: "1:769398598023:web:8d3da48abaa36a74b50b22"));
 
-  UserController _userController = UserController(); 
-  List<UserModel> users = await _userController.getUsers();
+  UserController _userController = UserController();
+  await _userController.getUsers();
   ProblemController _problemController = ProblemController();
   await _problemController.getProblems();
   runApp(const MyApp());
@@ -38,16 +35,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'VollkornSC'),
-      debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const MainPage(),
-        'logmain': (context) => const LogMainPage(),
-        'problemRegister': (context) => const RegisterProblemPage(),
-        'problem': (context) => const ProblemPage()
-      },
-    );
+        theme: ThemeData(fontFamily: 'VollkornSC'),
+        debugShowCheckedModeBanner: false,
+        title: 'Material App',
+        initialRoute: '/',
+        routes: {
+          '/': (context) => MainPage(),
+          'problemRegister': (context) => const RegisterProblemPage(),
+          'problem': (context) => const ProblemPage()
+        },
+      );
   }
 }

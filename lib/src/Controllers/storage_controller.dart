@@ -1,16 +1,13 @@
-import 'dart:convert';
-import 'dart:html' as html;
-import 'dart:io' as io;
-import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:image_picker_web/image_picker_web.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:universal_io/io.dart';
 
 class StorageController {
   final storage = FirebaseStorage.instance;
   final firestore = FirebaseFirestore.instance;
   final String _path = 'problems/';
+  final ImagePicker _picker = ImagePicker();
 
   Future<String> getImageFromLink(String imageUrl) async {
     Reference ref = storage.ref().child(imageUrl);
@@ -18,32 +15,27 @@ class StorageController {
     return url;
   }
 
-  Future<html.File> getImageFromDevice() async {
-    html.File? image = await ImagePickerWeb.getImageAsFile();
+  Future<XFile> getImageFromDevice() async {
+    XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     return image!;
   }
-  /* 
-  Future<String> addImageStorage(html.File image) async {
-    String url = '';
-    io.File decodedImage = io.File('');
-    final reader = html.FileReader();
-    reader.readAsDataUrl(image);
 
-    reader.onLoad.first.then((res) {
-      final encoded = reader.result as String;
-      final imageBase64 = encoded.replaceFirst(
-          RegExp(r'data:image/[^;]+;base64,'),
-          ''); // this is to remove some non necessary stuff
-      decodedImage = io.File.fromRawPath(base64Decode(imageBase64));
-    });
+  Future<List<String>> addImagesToStorage(List<XFile> images) async {
+    List<String> urls = [];
 
-    TaskSnapshot snapshot =
-        await storage.ref().child(_path).putFile(decodedImage);
-    if (snapshot.state == TaskState.success) {
-      url = await snapshot.ref.getDownloadURL();
-      print(url);
+    for (XFile image in images) {
+      //TODO: AAAAAAAAAAAAAAAAAAAAAH
+      dynamic decodedImage = File(image.path);
+      TaskSnapshot snapshot =
+          await storage.ref().child(_path).putFile(decodedImage);
+
+      if (snapshot.state == TaskState.success) {
+        String url = await snapshot.ref.getDownloadURL();
+        print(url);
+        urls.add(url);
+      }
     }
-    return url;
-  }*/
 
+    return urls;
+  }
 }

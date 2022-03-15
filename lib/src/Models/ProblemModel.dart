@@ -24,7 +24,7 @@ class ProblemModel {
   String estado;
   bool fijado;
   String titulo;
-  String multimedia;
+  List<dynamic> multimedia;
   GeoPoint ubicacion;
   String escritor;
 
@@ -34,7 +34,7 @@ class ProblemModel {
     String? estado,
     bool? fijado,
     String? titulo,
-    String? multimedia,
+    List<String>? multimedia,
     GeoPoint? ubicacion,
     String? escritor,
   }) =>
