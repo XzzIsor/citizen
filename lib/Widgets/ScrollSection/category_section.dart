@@ -34,7 +34,7 @@ class CategorySection extends StatelessWidget {
                     ],
                   )
                 : const Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(color: Colors.deepOrangeAccent,),
                   );
           }),
     );

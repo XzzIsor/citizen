@@ -6,6 +6,9 @@ export 'package:citizen/src/Controllers/maps_controller.dart';
 
 
 export 'package:citizen/src/Controllers/Providers/error_provider.dart';
+export 'package:citizen/src/Controllers/Providers/problem_provider.dart';
+
+
 
 
 

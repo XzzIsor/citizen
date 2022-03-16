@@ -1,7 +1,7 @@
 import 'package:citizen/Widgets/Login/login_dialog.dart';
 import 'package:citizen/Widgets/widgets.dart';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HeaderMain extends StatelessWidget {
   const HeaderMain({Key? key}) : super(key: key);

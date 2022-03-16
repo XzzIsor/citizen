@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'package:citizen/src/Models/models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -11,7 +13,8 @@ class ProblemController {
       multimedia: [],
       titulo: '',
       ubicacion: const GeoPoint(0.0, 0.0),
-      escritor: '');
+      escritor: '',
+      progreso: '');
 
   static List<ProblemModel> _problems = [];
 
@@ -21,14 +24,14 @@ class ProblemController {
           snapshot.docs.forEach((element) {
             ProblemModel problem = ProblemModel.fromMap(element.data());
             problem.setId = element.id;
-            problems.add(problem);
+            _problems.add(problem);
           })
         });
-    _getFixedProblem();
+    getFixedProblem();
   }
 
-  void _getFixedProblem() {
-    for (var prob in problems) {
+  void getFixedProblem() {
+    for (ProblemModel prob in _problems) {
       if (prob.fijado) {
         _fixedProblem = prob;
       }
@@ -36,13 +39,31 @@ class ProblemController {
   }
 
   Future<void> addProblem(ProblemModel problem) async {
-    await firestore
-        .collection("problema")
-        .add(problem.toMap())
-        .then((value) => print(value));
+    await firestore.collection("problema").add(problem.toMap());
   }
 
   ProblemModel get fixedProblem => _fixedProblem;
+
+  Future<void> setFixedProblem(ProblemModel newProblem) async {
+    await _editFixProblem(fixedProblem);
+    await _editFixProblem(newProblem);
+  }
+
+  Future<void> _editFixProblem(ProblemModel problem) async {
+    bool update = !problem.fijado;
+
+    await firestore
+        .collection("problema")
+        .doc(problem.id)
+        .update({"fijado": update});
+  }
+
+  Future<void> updateProgressProblem(ProblemModel problem) async {
+    await firestore
+        .collection("problema")
+        .doc(problem.id)
+        .update({"estado": problem.estado, "progreso": problem.progreso});
+  }
 
   List<ProblemModel> get problems => _problems;
 }

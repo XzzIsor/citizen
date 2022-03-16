@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_getters_setters
+
 import 'package:mapbox_gl/mapbox_gl.dart';
 
 class MapController {

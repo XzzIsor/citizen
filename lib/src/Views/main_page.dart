@@ -3,7 +3,6 @@ import 'package:citizen/src/Controllers/controllers.dart';
 import 'package:flutter/material.dart';
 
 import 'package:citizen/Widgets/widgets.dart';
-import 'package:provider/provider.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({Key? key}) : super(key: key);
@@ -34,9 +33,10 @@ class MainPage extends StatelessWidget {
                     ],
                   ),
                   MapBoxWeb(
-                    problem: _problemController.fixedProblem, 
-                    height: _size.height*0.75, 
-                    width: _size.width*0.34,
+                    fixedProblem: _problemController.fixedProblem,
+                    problemList: _problemController.problems,
+                    height: _size.height * 0.75,
+                    width: _size.width * 0.34,
                   )
                 ],
               )

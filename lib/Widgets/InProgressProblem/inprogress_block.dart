@@ -8,7 +8,6 @@ class InProgressBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final Size _size = MediaQuery.of(context).size;
     const TextStyle _textStyle = TextStyle(color: Colors.white, fontSize: 22);
     final double _height = _size.height * 0.3;
@@ -19,24 +18,33 @@ class InProgressBlock extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          InProgressCard(height: _height, width: _size.width * 0.3, problemModel: _problemController.fixedProblem),
+          InProgressCard(
+              height: _height,
+              width: _size.width * 0.3,
+              problemModel: _problemController.fixedProblem),
           const SizedBox(width: 25),
-          infoColumn(_textStyle, _height, _size.width * 0.3, _problemController.fixedProblem)
+          infoColumn(_textStyle, _height, _size.width * 0.3,
+              _problemController.fixedProblem)
         ],
       ),
     );
   }
 
-  Widget infoColumn(TextStyle textStyle, double height, double width, ProblemModel problem) {
+  Widget infoColumn(
+      TextStyle textStyle, double height, double width, ProblemModel problem) {
     return SizedBox(
       height: height,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            problem.titulo,
-            style: const TextStyle(color: Colors.white, fontSize: 35),
+          SizedBox(
+            width: width,
+            child: Text(
+              problem.titulo,
+              style: const TextStyle(color: Colors.white, fontSize: 35),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           SizedBox(height: height * 0.1),
           SizedBox(
@@ -48,7 +56,8 @@ class InProgressBlock extends StatelessWidget {
             ),
           ),
           SizedBox(height: height * 0.1),
-          ProgressBar(progress: double.parse(problem.estado)*0.01, width: width),
+          ProgressBar(
+              progress: double.parse(problem.estado) * 0.01, width: width),
           const SizedBox(height: 5),
           Text(
             'Progreso',

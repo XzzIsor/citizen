@@ -9,7 +9,8 @@ class ScrollCard extends StatelessWidget {
 
   final ProblemModel problem;
 
-  StorageController _storageController = StorageController();
+  final StorageController _storageController = StorageController();
+  final ProblemProvider _problemProvider = ProblemProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +18,7 @@ class ScrollCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
+        _problemProvider.selectedProblem = problem;
         Navigator.pushReplacementNamed(context, 'problem', arguments: problem);
       },
       child: FutureBuilder(
@@ -40,7 +42,9 @@ class ScrollCard extends StatelessWidget {
                           )
                         ],
                       )
-                    : Center(child: CircularProgressIndicator(color: Colors.deepPurple[900])));
+                    : Center(
+                        child: CircularProgressIndicator(
+                            color: Colors.deepPurple[900])));
           }),
     );
   }

@@ -9,7 +9,7 @@ export 'package:citizen/Widgets/MainView/header_main.dart';
 export 'package:citizen/Widgets/InProgressProblem/inprogress_block.dart';
 export 'package:citizen/Widgets/InProgressProblem/progress_bar.dart';
 export 'package:citizen/Widgets/image_card.dart';
-export 'package:citizen/Widgets/InProgressProblem/inProgress_card.dart';
+export 'package:citizen/Widgets/InProgressProblem/inprogress_card.dart';
 
 
 
@@ -23,7 +23,6 @@ export 'package:citizen/Widgets/ScrollSection/category_section.dart';
 export 'package:citizen/Widgets/Login/login_form.dart';
 
 /** Sing In */
-export 'package:citizen/Widgets/Sing%20In/google_singin_button.dart';
 export 'package:citizen/Widgets/Sing%20In/singin_dialog.dart';
 export 'package:citizen/Widgets/Sing%20In/singin_form.dart';
 export 'package:citizen/Widgets/Sing%20In/succesful_dialog.dart';
@@ -31,6 +30,22 @@ export 'package:citizen/Widgets/Sing%20In/succesful_dialog.dart';
 /** Maps */
 export 'package:citizen/Widgets/Maps/map_box_web.dart';
 export 'package:citizen/Widgets/Maps/map_register_problem.dart';
+
+/** Problem */
+export 'package:citizen/Widgets/Problem/update_problem_dialog.dart';
+export 'package:citizen/Widgets/Problem/update_problem_form.dart';
+
+/** Recovery Password */
+export 'package:citizen/Widgets/RecoveryPassword/recovery_dialog.dart';
+export 'package:citizen/Widgets/RecoveryPassword/recovery_form.dart';
+export 'package:citizen/Widgets/RecoveryPassword/state_recovery_dialog.dart';
+
+
+
+
+
+
+
 
 
 

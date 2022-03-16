@@ -1,4 +1,4 @@
-export 'package:citizen/src/Models/UserModel.dart';
-export 'package:citizen/src/Models/ProblemModel.dart';
+export 'package:citizen/src/Models/user_model.dart';
+export 'package:citizen/src/Models/problem_model.dart';
 
 

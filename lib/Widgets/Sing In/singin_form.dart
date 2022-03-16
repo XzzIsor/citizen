@@ -22,7 +22,8 @@ class SingInForm extends StatelessWidget {
         email: '',
         telefono: '',
         password: '',
-        uid: '');
+        uid: '',
+        admin: false);
 
     CustomTextField _emailInput = CustomTextField(
       label: 'E-Mail',
@@ -107,6 +108,7 @@ class SingInForm extends StatelessWidget {
       validator: (value) {
         String? resp =
             int.tryParse(value!) == null ? 'Ingrese un valor numérico' : null;
+        return resp;
       },
     );
 
@@ -122,14 +124,18 @@ class SingInForm extends StatelessWidget {
       validator: (value) {
         String? resp =
             int.tryParse(value!) == null ? 'Ingrese un valor numérico' : null;
+        return resp;
       },
     );
 
     ElevatedButton _singInbutton = ElevatedButton(
       onPressed: () async {
+        final domain = _user.email.split("@");
+        bool admin = domain[1] == "cauca.gov.co" ? true : false;
         String uid = await _userController.registerUsingEmailPassword(
             email: _user.email, password: _user.password);
         if (ErrorProvider.error == '') {
+          _user.admin = admin;
           _user.uid = uid;
           await _userController.registerUser(user: _user);
           Navigator.of(context).pop();
@@ -201,7 +207,6 @@ class SingInForm extends StatelessWidget {
     );
   }
 
-  User() {}
 }
 
 class FormContent extends StatelessWidget {

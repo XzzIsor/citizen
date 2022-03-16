@@ -1,7 +1,7 @@
 import 'package:citizen/Widgets/widgets.dart';
 import 'package:citizen/src/Controllers/controllers.dart';
 import 'package:citizen/src/Models/models.dart';
-import 'package:citizen/src/Views/problem_page.dart';
+
 
 import 'package:flutter/material.dart';
 
@@ -91,12 +91,18 @@ class ProblemView extends StatelessWidget {
                   ),
                   SizedBox(height: _size.height * 0.02,),
                   Text(
+                    'Trazo: ' + _problem.progreso,
+                    style: const TextStyle(color: Colors.white, fontSize: 20),
+                    maxLines: 20,
+                  ),
+                  SizedBox(height: _size.height * 0.02,),
+                  Text(
                     'Progreso: ' + _problem.estado + "%",
                     style: const TextStyle(color: Colors.white, fontSize: 20),
                     maxLines: 20,
                   ),
                   SizedBox(height: _size.height * 0.01),
-                  ProgressBar(progress: double.parse(_problem.estado)*0.01, width: _size.width * 0.25)
+                  ProgressBar(progress: double.parse(_problem.estado)*0.01, width: _size.width * 0.25),
                 ],
               ),
             ),

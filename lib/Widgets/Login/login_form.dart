@@ -60,7 +60,11 @@ class _LoginFormState extends State<LoginForm> {
     );
 
     TextButton _forgetButton = TextButton(
-        onPressed: () {},
+        onPressed: () {
+          RecoveryDialog recoveryDialog = RecoveryDialog();
+          Navigator.pop(context);
+          recoveryDialog.showRecoveryDialog(context);
+        },
         child: const Text(
           '¿Olvidó su contraseña?',
           style: TextStyle(color: Colors.white),

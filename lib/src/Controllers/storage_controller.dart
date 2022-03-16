@@ -24,14 +24,13 @@ class StorageController {
     List<String> urls = [];
 
     for (XFile image in images) {
-      //TODO: AAAAAAAAAAAAAAAAAAAAAH
+      //Código no Funcional
       dynamic decodedImage = File(image.path);
       TaskSnapshot snapshot =
           await storage.ref().child(_path).putFile(decodedImage);
 
       if (snapshot.state == TaskState.success) {
         String url = await snapshot.ref.getDownloadURL();
-        print(url);
         urls.add(url);
       }
     }

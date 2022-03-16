@@ -15,6 +15,7 @@ class InProgressCard extends StatelessWidget {
   final double width;
   final ProblemModel problemModel;
   final StorageController _storageController = StorageController();
+  final ProblemProvider _problemProvider = ProblemProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class InProgressCard extends StatelessWidget {
         },
       ),
       onTap: () {
+        _problemProvider.selectedProblem = problemModel;
         Navigator.pushNamed(context, 'problem', arguments: problemModel);
       },
     );

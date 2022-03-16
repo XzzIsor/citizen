@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_getters_setters, avoid_function_literals_in_foreach_calls
+
 import 'package:citizen/src/Controllers/controllers.dart';
 import 'package:citizen/src/Models/models.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class UserController {
   final firestore = FirebaseFirestore.instance;
-  static List<UserModel> _users = [];
+  static final List<UserModel> _users = [];
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   static UserModel _authUser = UserModel(
@@ -17,7 +19,8 @@ class UserController {
       email: 'invalid',
       telefono: 'invalid',
       password: 'invalid',
-      uid: 'invalid');
+      uid: 'invalid',
+      admin: false);
 
   Future<List<UserModel>> getUsers() async {
     await firestore.collection("user").get().then((snapshot) => {
@@ -105,13 +108,24 @@ class UserController {
       } else if (e.code == 'email-already-in-use') {
         ErrorProvider.error = 'el correo ya está en uso';
       }
-    } catch (e) {
-      print(e);
-    }
+    } 
     return user!.uid;
   }
 
   Future<void> logoutFromFirebase() async {
     _auth.signOut();
+  }
+
+  Future<void> sendRecoveryPassword(String email) async {
+    try {
+      _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'auth/invalid-email') {
+        ErrorProvider.error = 'Correo no válido';
+      }
+      if (e.code == 'auth/user-not-found') {
+        ErrorProvider.error = 'El usuario no está registrado';
+      }
+    }
   }
 }

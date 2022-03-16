@@ -21,8 +21,10 @@ class InitialProblemDataForm extends StatelessWidget {
       fijado: false,
       multimedia: [],
       titulo: '',
-      ubicacion: GeoPoint(0, 0),
-      escritor: '');
+      ubicacion: const GeoPoint(0, 0),
+      escritor: '',
+      progreso: ''
+      );
 
   final List<XFile> _images = [];
 

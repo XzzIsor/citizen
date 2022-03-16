@@ -18,9 +18,9 @@ class ProblemPage extends StatelessWidget {
           const BackgroundMain(),
           Column(
             children: [
-              _userController.authUser.id != 'invalid' ? const LogHeader() : const HeaderMain(),
+              _userController.authUser.id != 'invalid' ? const LogHeader(isProblem: true,) : const HeaderMain(),
               const SizedBox(height: 150),
-              ProblemView()
+              const ProblemView()
             ],
 
           ),
